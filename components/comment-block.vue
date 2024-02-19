@@ -58,11 +58,11 @@ const comment = computed(() => props.comment as Comment)
                <u-badge
                   v-if="comment.user?.userable_type === 'officer'"
                   variant="subtle"
-                  color="gray"
+                  color="violet"
                   size="xs"
                   class="ms-1"
                >
-                  Pengawas
+                  Officer
                </u-badge>
 
                <u-badge

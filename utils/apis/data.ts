@@ -1,6 +1,5 @@
 export async function getData (payload: API.Request.Query.Data) : Promise <Utility.DataTable<Model.Data[]>> {
    const query = { ...payload }
-   query.supervisor = useAuthStore().getUser?.userable_id || query.supervisor
 
    const response = await $api <API.Response <Utility.DataTable<Model.Data[]>>> (`/data`, {
       method: 'get',

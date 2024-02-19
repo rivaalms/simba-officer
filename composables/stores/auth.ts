@@ -6,7 +6,7 @@ type State = {
    token: string | null
 }
 
-export const useAuthStore = defineStore('supervisor-auth', {
+export const useAuthStore = defineStore('officer-auth', {
    persist: true,
 
    state: () : State => ({
