@@ -45,4 +45,10 @@ declare namespace API.Request.Query {
    type DataCount = {
       year: string
    }
+
+   type Supervisor = {
+      page: number
+      per_page: number | string
+      search?: string | null
+   }
 }

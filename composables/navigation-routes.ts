@@ -14,4 +14,9 @@ export const useNavbarRoutes : Utility.Router[] = [
       to: '/schools',
       icon: 'i-fa6-solid-school'
    },
+   {
+      label: 'Pengawas',
+      to: '/supervisors',
+      icon: 'i-heroicons-users-20-solid'
+   }
 ]
