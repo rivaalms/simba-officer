@@ -42,7 +42,9 @@
          </u-card>
 
          <u-card>
-            <div class="grid gap-4 place-items-start justify-items-stretch">
+            <dialog-placeholder v-if="loading"></dialog-placeholder>
+
+            <div v-else class="grid gap-4 place-items-start justify-items-stretch">
                <p>Pengawas</p>
 
                <div class="flex gap-4 items-center">
@@ -59,6 +61,14 @@
                         {{ school?.supervisor?.user?.email }}
                      </p>
                   </div>
+
+                  <u-button
+                     :ui="{ rounded: 'rounded-full' }"
+                     variant="ghost"
+                     icon="i-heroicons-arrow-top-right-on-square-16-solid"
+                     :to="`/supervisors/${school?.supervisor?.id}`"
+                     exact
+                  ></u-button>
                </div>
             </div>
          </u-card>
