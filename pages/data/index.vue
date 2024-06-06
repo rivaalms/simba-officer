@@ -43,7 +43,7 @@
                      searchable
                      searchable-placeholder="Cari..."
                      :search-attributes="['label']"
-                     @update:model-value="(val) => {
+                     @update:model-value="(val: number) => {
                         fetchTypeOptions(val)
                         fetchData()
                      }"
@@ -169,10 +169,10 @@ const headers = computed(() => [
    { key: 'actions' }
 ])
 
-const { data, pending: loading, refresh: fetchData } = await useAsyncData('data', () => getData(filter.value))
-const { data: categoryOptions, pending: categoryOptLoading, refresh: fetchCategoryOptions } = await useAsyncData('category-options', () => getDataCategoryOptions())
-const { data: statusOptions, pending: statusOptLoading, refresh: fetchStatusOptions } = await useAsyncData('status-options', () => getDataStatusOptions())
-const { data: schoolOptions, pending: schoolPending, refresh: fetchSchoolOptions } = await useAsyncData('school-options', () => getSchoolOptions())
+const { data, pending: loading, refresh: fetchData } = await useLazyAsyncData('data', () => getData(filter.value))
+const { data: categoryOptions, pending: categoryOptLoading, refresh: fetchCategoryOptions } = await useLazyAsyncData('category-options', () => getDataCategoryOptions())
+const { data: statusOptions, pending: statusOptLoading, refresh: fetchStatusOptions } = await useLazyAsyncData('status-options', () => getDataStatusOptions())
+const { data: schoolOptions, pending: schoolPending, refresh: fetchSchoolOptions } = await useLazyAsyncData('school-options', () => getSchoolOptions())
 
 const typeOptions = ref<Utility.SelectOption[]>([])
 

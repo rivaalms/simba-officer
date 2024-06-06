@@ -9,4 +9,9 @@ export const useNavbarRoutes : Utility.Router[] = [
       to: '/data',
       icon: 'i-heroicons-circle-stack-20-solid'
    },
+   {
+      label: 'Sekolah',
+      to: '/schools',
+      icon: 'i-fa6-solid-school'
+   },
 ]

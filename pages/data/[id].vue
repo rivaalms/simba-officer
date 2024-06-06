@@ -80,42 +80,6 @@
 
       <div class="col-span-2 place-self-start grid gap-2 w-full">
          <u-card>
-            <template #header>
-               <div class="flex items-center justify-between">
-                  Komentar
-
-                  <u-select-menu
-                     v-model="commentSort"
-                     :options="commentSortOptions"
-                     value-attribute="value"
-                     @update:model-value="fetchComments"
-                  ></u-select-menu>
-               </div>
-            </template>
-
-            <dialog-placeholder v-if="commentLoading"/>
-
-            <template v-else>
-               <div v-if="(comments?.length || 0) < 1" class="flex flex-col items-center gap-2 text-gray-500">
-                  <u-icon name="i-tabler-message-2-x"></u-icon>
-
-                  <p class="text-sm">
-                     Belum ada komentar
-                  </p>
-               </div>
-
-               <div v-else class="grid divide-y">
-                  <comment-block
-                     v-for="comment in comments"
-                     :comment="comment"
-                     :data="data!"
-                     @reply="replyToComment"
-                  />
-               </div>
-            </template>
-         </u-card>
-
-         <u-card>
             <div class="grid gap-4">
                <u-alert
                   v-if="isReplyingTo"
@@ -164,6 +128,42 @@
                </div>
             </div>
          </u-card>
+
+         <u-card>
+            <template #header>
+               <div class="flex items-center justify-between">
+                  Komentar
+
+                  <u-select-menu
+                     v-model="commentSort"
+                     :options="commentSortOptions"
+                     value-attribute="value"
+                     @update:model-value="fetchComments"
+                  ></u-select-menu>
+               </div>
+            </template>
+
+            <dialog-placeholder v-if="commentLoading"/>
+
+            <template v-else>
+               <div v-if="(comments?.length || 0) < 1" class="flex flex-col items-center gap-2 text-gray-500">
+                  <u-icon name="i-tabler-message-2-x"></u-icon>
+
+                  <p class="text-sm">
+                     Belum ada komentar
+                  </p>
+               </div>
+
+               <div v-else class="grid divide-y">
+                  <comment-block
+                     v-for="comment in comments"
+                     :comment="comment"
+                     :data="data!"
+                     @reply="replyToComment"
+                  />
+               </div>
+            </template>
+         </u-card>
       </div>
    </div>
 </template>
@@ -194,8 +194,8 @@ const commentState = ref<API.Request.Form.Comment>({
 const isCommentSending = ref<boolean>(false)
 const isReplyingTo = ref<Model.Comment | null>(null)
 
-const { data, pending: dataLoading, refresh: fetchDataDetails } = await useAsyncData('data-details', () => getDataDetails(parseInt(useRoute().params.id as string)))
-const { data: comments, pending: commentLoading, refresh: fetchComments } = await useAsyncData('comments', () => getComments(parseInt(useRoute().params.id as string), { sort: commentSort.value }), { watch: [commentSort] })
+const { data, pending: dataLoading, refresh: fetchDataDetails } = await useLazyAsyncData('data-details', () => getDataDetails(parseInt(useRoute().params.id as string)))
+const { data: comments, pending: commentLoading, refresh: fetchComments } = await useLazyAsyncData('comments', () => getComments(parseInt(useRoute().params.id as string), { sort: commentSort.value }), { watch: [commentSort] })
 
 const updateDataStatusItems = computed(() => [
    [
