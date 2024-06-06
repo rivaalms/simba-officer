@@ -17,12 +17,27 @@ declare namespace Utility {
          value: string | number
       }
 
+      type DataCountItem = {
+         name: string
+         count: number
+      }
+
       type DataCount = {
          total: number
-         data_by_status: Array<{ name: string, count: number }>
-         data_by_category: Array<{ name: string, total: number, data_by_type: Pick <DataCount, 'data_by_status'> }>
+         data_by_status: Array<DataCountItem>
+         data_by_category: Array<DataCountItem & { data_by_type: Array<DataCountItem> }>
          start_year?: string | null
          end_year?: string | null
+      }
+
+      type UserCount = {
+         total: number
+         user_by_type: {
+            school: number
+            supervisor: number
+            officer: number
+            admin: number
+         }
       }
    }
 }

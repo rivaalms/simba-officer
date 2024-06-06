@@ -51,4 +51,9 @@ declare namespace API.Request.Query {
       per_page: number | string
       search?: string | null
    }
+
+   type YearRange = {
+      start_year: string | number
+      end_year: string | number
+   }
 }
