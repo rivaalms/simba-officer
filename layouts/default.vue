@@ -9,6 +9,7 @@
    </main>
 
    <app-footer></app-footer>
+   <lazy-app-dialog></lazy-app-dialog>
 </template>
 
 <script setup lang="ts">
